@@ -116,15 +116,3 @@ Les paramètres principaux à ajuster dans les sketches :
 #define LED_VERTE   D3   // Broche LED verte
 #define DELAY_MS    100  // Vitesse de la séquence (ms)
 ```
-
----
-
-## Licence
-
-Ce projet est open source. Libre à vous de l'utiliser, le modifier et le partager.
-
----
-
-## Contribution
-
-Les contributions sont les bienvenues ! N'hésitez pas à ouvrir une *issue* ou une *pull request*.
