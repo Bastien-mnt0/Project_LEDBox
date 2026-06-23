@@ -51,7 +51,7 @@ Brochage typique sur le XIAO ESP32-C3 :
 - **Cathode (−) de chaque LED** → GND (via résistance)
 - **VCC** → 3,3 V (broches 3V3 du XIAO)
 
-> ⚠️ Le XIAO ESP32-C3 fonctionne en **3,3 V logique**. Ne pas connecter directement à du 5 V.
+> Le XIAO ESP32-C3 fonctionne en **3,3 V logique**. Ne pas connecter directement à du 5 V.
 
 ---
 
