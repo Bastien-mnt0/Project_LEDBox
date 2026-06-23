@@ -28,7 +28,7 @@ Project_LEDBox/
 |---|---|
 | **Seeed Studio XIAO ESP32-C3** | Microcontrôleur principal (Wi-Fi + BLE, USB-C) |
 | **4 LEDs** | Blanche, Rouge, Jaune, Verte (5 mm) |
-| **4 résistances** | ~220 Ω – 330 Ω (protection des LEDs) |
+| **4 résistances** | 1x 0 Ω (LED blanche), 3x 47 Ω (LED rouge, jaune, verte) |
 | **Mini breadboard** | Pour le prototypage |
 | **Fils de connexion** | Jumper wires |
 | **Boîtier imprimé en 3D** | Fichiers fournis dans `FreeCAD/` |
@@ -43,15 +43,15 @@ Brochage typique sur le XIAO ESP32-C3 :
 
 | LED | Broche XIAO | Résistance |
 |---|---|---|
-| Blanche | D0 | 220 Ω |
-| Rouge | D1 | 220 Ω |
-| Jaune | D2 | 220 Ω |
-| Verte | D3 | 220 Ω |
+| Blanche | D0 | 0 Ω |
+| Rouge | D1 | 47 Ω |
+| Jaune | D2 | 47 Ω |
+| Verte | D3 | 47 Ω |
 
 - **Cathode (−) de chaque LED** → GND (via résistance)
 - **VCC** → 3,3 V (broches 3V3 du XIAO)
 
-> Le XIAO ESP32-C3 fonctionne en **3,3 V logique**. Ne pas connecter directement à du 5 V.
+> ⚠️ Le XIAO ESP32-C3 fonctionne en **3,3 V logique**. Ne pas connecter directement à du 5 V.
 
 ---
 
@@ -116,3 +116,15 @@ Les paramètres principaux à ajuster dans les sketches :
 #define LED_VERTE   D3   // Broche LED verte
 #define DELAY_MS    100  // Vitesse de la séquence (ms)
 ```
+
+---
+
+## Licence
+
+Ce projet est open source. Libre à vous de l'utiliser, le modifier et le partager.
+
+---
+
+## Contribution
+
+Les contributions sont les bienvenues ! N'hésitez pas à ouvrir une *issue* ou une *pull request*.
