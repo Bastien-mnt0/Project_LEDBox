@@ -12,10 +12,16 @@ const int OFF_DELAY = 150;
 const char DNA_sequence[] = "ATGCGTACCTGATCGTAGCTAGGCTAACGTTGACCTAGCGTATCGGATCCGTAAGCTTGCATGCGTACGATCGTTAACGCGATGCTAGCTAGCATGGCCTA";
 
 void setup() {
+  Serial.begin(9600);
+
   for (int i = 0; i < NB_LEDS; i++) {
     pinMode(leds[i], OUTPUT);
     digitalWrite(leds[i], LOW);
   }
+
+  Serial.println("Séquenceur ADN prêt.");
+  Serial.print("Longueur de la séquence : ");
+  Serial.println(strlen(DNA_sequence));
 }
 
 void loop() {
@@ -25,12 +31,16 @@ void loop() {
     int  led  = -1;
 
     switch (base) {
-      case 'A': led = redled;    break;
-      case 'T': led = blueled;   break;
-      case 'G': led = greenled;  break;
-      case 'C': led = yellowled; break;
-      default: break;
+      case 'A': led = redled;    Serial.print("A → Rouge  "); break;
+      case 'T': led = blueled;   Serial.print("T → Bleu   "); break;
+      case 'G': led = greenled;  Serial.print("G → Vert   "); break;
+      case 'C': led = yellowled; Serial.print("C → Jaune  "); break;
+      default:
+        Serial.print("? → ignoré");
+        break;
     }
+
+    Serial.println(base);
 
     if (led != -1) {
       digitalWrite(led, HIGH);
@@ -40,5 +50,6 @@ void loop() {
     }
   }
 
+  Serial.println("--- Fin de séquence, redémarrage ---");
   delay(1000);
 }
