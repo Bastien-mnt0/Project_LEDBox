@@ -28,7 +28,7 @@ Project_LEDBox/
 |---|---|
 | **Seeed Studio XIAO ESP32-C3** | Main microcontroller (Wi-Fi + BLE, USB-C) |
 | **4 LEDs** | White, Red, Yellow, Green (5 mm) |
-| **4 Resistors** | 1x 0 Ω (white LED), 3x 47 Ω (red, yellow, green LEDs) |
+| **4 Resistors** | 1x 10 Ω (white LED), 3x 47 Ω (red, yellow, green LEDs) |
 | **Mini breadboard** | For prototyping |
 | **Jumper wires** | Connection wires |
 | **3D-printed enclosure** | Files provided in `FreeCAD/` |

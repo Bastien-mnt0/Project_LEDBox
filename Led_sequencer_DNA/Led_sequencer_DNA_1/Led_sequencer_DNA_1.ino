@@ -1,10 +1,10 @@
-const int redled    = D0;
-const int blueled   = D1;
-const int greenled  = D2;
-const int yellowled = D3;
+const int greenled  = D0;
+const int yellowled = D1;
+const int redled    = D2;
+const int blueled   = D3;
 
 const int NB_LEDS = 4;
-const int leds[]  = { redled, blueled, greenled, yellowled };
+const int leds[]  = { greenled, yellowled, redled, blueled };
 
 const int ON_DELAY  = 300;
 const int OFF_DELAY = 150;
