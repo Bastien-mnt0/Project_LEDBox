@@ -14,6 +14,7 @@ An LED box project controlled by a **Seeed Studio XIAO ESP32-C3**, including 3D 
     </td>
   </tr>
 </table>
+
 ---
 
 ## Project Overview
@@ -52,6 +53,10 @@ Project_LEDBox/
 │   ├── V1.fzz / V1.png              # V1 schematic
 │   ├── V2.fzz / V2.png              # V2 schematic (current)
 │   └── seeed-xiao-esp32-tht.fzpz   # XIAO Fritzing part
+│
+├── Images/
+│   ├── Electronic-assembly.jpg
+│   └── Electronic-assembly+LEDBox.jpg
 │
 ├── Led_sequencer_DNA/
 │   ├── Led_sequencer_DNA_1/         # Fixed DNA sequence (GFP gene)
