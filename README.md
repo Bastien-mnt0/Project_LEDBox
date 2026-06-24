@@ -2,6 +2,9 @@
 
 An LED box project controlled by a **Seeed Studio XIAO ESP32-C3**, including 3D enclosure design, electronic schematics, and LED sequencer programs inspired by DNA sequences.
 
+![Markdown Logo](Images/Electronic-assembly.jpg)
+![Markdown Logo](Images/Electronic-assembly+LEDBox.jpg)
+
 ---
 
 ## Project Overview
@@ -194,15 +197,3 @@ const char* DNA_sequences[] = {
   "TGCACAGG...",
 };
 ```
-
----
-
-## License
-
-This project is open source. Feel free to use, modify, and share it.
-
----
-
-## Contributing
-
-Contributions are welcome! Feel free to open an issue or a pull request.
