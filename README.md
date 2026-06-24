@@ -136,9 +136,7 @@ Engraving/cutting design files are available in the `Plexiglass engraving/` fold
 
 - `Plexiglass engraving-v1.svg` — first version of the engraving design
 - `Plexiglass engraving-v2.svg` — current, refined version
-- `Plexiglass engraving-vtest.svg` — test pattern for calibrating engraving power/speed before running the final design
-
-> Always run a test engrave (`-vtest.svg`) on a scrap piece of plexiglass first to calibrate your laser settings before engraving the final panel.
+- `Plexiglass engraving-vtest.svg` — my tests for the final version
 
 ---
 
