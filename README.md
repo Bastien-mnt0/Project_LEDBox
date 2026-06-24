@@ -1,6 +1,6 @@
 # Project_LEDBox
 
-An LED box project controlled by a **Seeed Studio XIAO ESP32-C3**, including 3D enclosure design, electronic schematics, and LED sequencer programs inspired by DNA sequences.
+An LED box project controlled by a **Seeed Studio XIAO ESP32-C3**, including 3D enclosure design, electronic schematics, plexiglass engraving designs, and LED sequencer programs inspired by DNA sequences.
 
 <table>
   <tr>
@@ -58,6 +58,11 @@ Project_LEDBox/
 │   ├── Electronic-assembly.jpg
 │   └── Electronic-assembly+LEDBox.jpg
 │
+├── Plexiglass engraving/
+│   ├── Plexiglass engraving-v1.svg     # V1 engraving design
+│   ├── Plexiglass engraving-v2.svg     # V2 engraving design (current)
+│   └── Plexiglass engraving-vtest.svg  # Test pattern
+│
 ├── Led_sequencer_DNA/
 │   ├── Led_sequencer_DNA_1/         # Fixed DNA sequence (GFP gene)
 │   │   ├── Led_sequencer_DNA_1.ino
@@ -86,6 +91,7 @@ Project_LEDBox/
 | **Mini breadboard** | For prototyping |
 | **Jumper wires** | Connection wires |
 | **3D-printed enclosure** | Files provided in `FreeCAD/` |
+| **Plexiglass panel** | Engraved/cut from files provided in `Plexiglass engraving/` |
 
 ---
 
@@ -121,6 +127,18 @@ Recommended print settings:
 - Material: **PLA**
 - Layer height: **0.2 mm**
 - Infill: **20%** minimum
+
+---
+
+## Plexiglass Engraving
+
+Engraving/cutting design files are available in the `Plexiglass engraving/` folder as `.svg` vector files, ready to import into your laser cutter/engraver software (e.g. LightBurn, LaserGRBL).
+
+- `Plexiglass engraving-v1.svg` — first version of the engraving design
+- `Plexiglass engraving-v2.svg` — current, refined version
+- `Plexiglass engraving-vtest.svg` — test pattern for calibrating engraving power/speed before running the final design
+
+> Always run a test engrave (`-vtest.svg`) on a scrap piece of plexiglass first to calibrate your laser settings before engraving the final panel.
 
 ---
 
