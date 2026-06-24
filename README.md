@@ -4,8 +4,14 @@ An LED box project controlled by a **Seeed Studio XIAO ESP32-C3**, including 3D 
 
 <table>
   <tr>
-    <td><img src="Images/Electronic-assembly.jpg" width="200"></td>
-    <td><img src="Images/Electronic-assembly+LEDBox.jpg" width="200"></td>
+    <td>
+      <img src="Images/Electronic-assembly.jpg" width="400"><br>
+      <strong>Electronic assembly</strong>
+    </td>
+    <td>
+      <img src="Images/Electronic-assembly+LEDBox.jpg" width="400"><br>
+      <strong>Electronic assembly with the LEDBox</strong>
+    </td>
   </tr>
 </table>
 ---
