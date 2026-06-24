@@ -64,6 +64,8 @@ Project_LEDBox/
 | **Seeed Studio XIAO ESP32-C3** | Main microcontroller (Wi-Fi + BLE, USB-C) |
 | **4 LEDs** | Green (D0), Yellow (D1), Red (D2), Blue/White (D3) |
 | **4 Resistors** | 1x 10 Ω (white LED), 3x 47 Ω (red, green, yellow LEDs) |
+| **4x Heat Set Inserts M3** | [CNC Kitchen M3 Standard](https://cnckitchen.store/products/heat-set-insert-m3-x-5-7-100-pieces) – for enclosure assembly |
+| **4x Screws M3x8mm countersunk** | Flat head screws to secure the lid |
 | **Mini breadboard** | For prototyping |
 | **Jumper wires** | Connection wires |
 | **3D-printed enclosure** | Files provided in `FreeCAD/` |
@@ -192,3 +194,15 @@ const char* DNA_sequences[] = {
   "TGCACAGG...",
 };
 ```
+
+---
+
+## License
+
+This project is open source. Feel free to use, modify, and share it.
+
+---
+
+## Contributing
+
+Contributions are welcome! Feel free to open an issue or a pull request.
