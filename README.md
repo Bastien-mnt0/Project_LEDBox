@@ -192,15 +192,3 @@ const char* DNA_sequences[] = {
   "TGCACAGG...",
 };
 ```
-
----
-
-## License
-
-This project is open source. Feel free to use, modify, and share it.
-
----
-
-## Contributing
-
-Contributions are welcome! Feel free to open an issue or a pull request.
