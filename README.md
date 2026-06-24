@@ -1,12 +1,21 @@
 # Project_LEDBox
 
-An LED box project controlled by a **Seeed Studio XIAO ESP32-C3**, including the 3D enclosure design, electronic schematic, and two LED sequencer programs.
+An LED box project controlled by a **Seeed Studio XIAO ESP32-C3**, including 3D enclosure design, electronic schematics, and LED sequencer programs inspired by DNA sequences.
 
 ---
 
 ## Project Overview
 
-> Breadboard prototype: XIAO ESP32-C3 + 4 LEDs (white, red, yellow, green) with protection resistors.
+Breadboard prototype: XIAO ESP32-C3 + 4 LEDs (white, red, yellow, green) with protection resistors.
+
+Each LED corresponds to a DNA base:
+
+| LED | Color | DNA Base |
+|---|---|---|
+| `D0` | Green | G (Guanine) |
+| `D1` | Yellow | C (Cytosine) |
+| `D2` | Red | A (Adenine) |
+| `D3` | Blue/White | T (Thymine) |
 
 ---
 
@@ -14,10 +23,36 @@ An LED box project controlled by a **Seeed Studio XIAO ESP32-C3**, including the
 
 ```
 Project_LEDBox/
-├── FreeCAD/                  # 3D enclosure models (.FCStd files)
-├── Fritzing plan/            # Circuit schematic (.fzz file)
-├── Led_sequencer_DNA/        # ESP32-C3 program – DNA-themed sequence
-└── Led_sequencer_test/       # ESP32-C3 program – wiring tests and validation
+├── FreeCAD/
+│   ├── V1/                          # V1 enclosure files
+│   │   ├── LEDBox-V1.FCStd
+│   │   ├── LEDBox.3mf
+│   │   ├── LEDBox-BoxLid.3mf
+│   │   └── LEDBox-TopOfTheBox.3mf
+│   ├── LEDBox.FCStd                 # Current FreeCAD design
+│   ├── LEDBox2.3mf                  # Main enclosure (printable)
+│   ├── LEDBox-BoxLid2.3mf           # Lid (printable)
+│   ├── LEDBox-TopOfTheBox2.3mf      # Top panel (printable)
+│   ├── Mini-Breadboard YELLOW.STEP  # Breadboard reference model
+│   └── Seeed Studio XIAO-ESP32-C3.step  # XIAO reference model
+│
+├── Fritzing plan/
+│   ├── V1.fzz / V1.png              # V1 schematic
+│   ├── V2.fzz / V2.png              # V2 schematic (current)
+│   └── seeed-xiao-esp32-tht.fzpz   # XIAO Fritzing part
+│
+├── Led_sequencer_DNA/
+│   ├── Led_sequencer_DNA_1/         # Fixed DNA sequence (GFP gene)
+│   │   ├── Led_sequencer_DNA_1.ino
+│   │   ├── sequence.fasta           # DNA sequence source
+│   │   └── update_dna_sequence.py  # Script to update sequence from FASTA
+│   └── Led_sequencer_DNA_2/         # Random sequence selector
+│       ├── Led_sequencer_DNA_2.ino
+│       ├── sequence.fasta
+│       └── update_dna_sequence.py
+│
+└── Led_sequencer_test/
+    └── Led_sequencer_test.ino       # Basic LED test
 ```
 
 ---
@@ -27,8 +62,8 @@ Project_LEDBox/
 | Component | Description |
 |---|---|
 | **Seeed Studio XIAO ESP32-C3** | Main microcontroller (Wi-Fi + BLE, USB-C) |
-| **4 LEDs** | White, Red, Yellow, Green (5 mm) |
-| **4 Resistors** | 1x 10 Ω (white LED), 3x 47 Ω (red, yellow, green LEDs) |
+| **4 LEDs** | Green (D0), Yellow (D1), Red (D2), Blue/White (D3) |
+| **4 Resistors** | 1x 10 Ω (white LED), 3x 47 Ω (red, green, yellow LEDs) |
 | **Mini breadboard** | For prototyping |
 | **Jumper wires** | Connection wires |
 | **3D-printed enclosure** | Files provided in `FreeCAD/` |
@@ -37,19 +72,20 @@ Project_LEDBox/
 
 ## Electronic Schematic
 
-The full schematic is available in the `Fritzing plan/` folder. It can be opened with [Fritzing](https://fritzing.org/).
+Schematics are available in the `Fritzing plan/` folder (open with [Fritzing](https://fritzing.org/)).
+A V1 and V2 version are provided.
 
-Typical pinout on the XIAO ESP32-C3:
+Pinout on the XIAO ESP32-C3:
 
-| LED | XIAO Pin | Resistor |
-|---|---|---|
-| White | D0 | 0 Ω |
-| Red | D1 | 47 Ω |
-| Yellow | D2 | 47 Ω |
-| Green | D3 | 47 Ω |
+| LED | XIAO Pin | Resistor | DNA Base |
+|---|---|---|---|
+| Green | D0 | 47 Ω | G |
+| Yellow | D1 | 47 Ω | C |
+| Red | D2 | 47 Ω | A |
+| Blue/White | D3 | 10 Ω | T |
 
 - **Cathode (−) of each LED** → GND (via resistor)
-- **VCC** → 3.3 V (XIAO 3V3 pins)
+- **VCC** → 3.3 V (XIAO 3V3 pin)
 
 > The XIAO ESP32-C3 operates at **3.3 V logic**. Do not connect directly to 5 V.
 
@@ -57,7 +93,10 @@ Typical pinout on the XIAO ESP32-C3:
 
 ## 3D Enclosure
 
-The enclosure design files are in the `FreeCAD/` folder. They can be opened and edited with [FreeCAD](https://www.freecad.org/) (open source).
+Design files are in `FreeCAD/`. Open and edit with [FreeCAD](https://www.freecad.org/) (open source).
+Printable `.3mf` files are ready to slice directly.
+
+Two versions are available: **V1** (archived in `FreeCAD/V1/`) and the current **V2**.
 
 Recommended print settings:
 - Material: **PLA**
@@ -70,11 +109,30 @@ Recommended print settings:
 
 ### `Led_sequencer_test`
 
-Test program to verify that the wiring and LEDs are working correctly. Use this first to validate the setup.
+Basic test program: lights each LED up one by one sequentially to verify wiring.
 
-### `Led_sequencer_DNA`
+- ON delay: 300 ms
+- OFF delay: 150 ms
 
-Main program generating a light animation inspired by the structure of a **DNA double helix**. The LEDs light up sequentially to reproduce a spiral visual effect.
+### `Led_sequencer_DNA_1` — Fixed DNA sequence
+
+Reads a hardcoded DNA sequence (the **GFP gene** — Green Fluorescent Protein) and lights the corresponding LED for each base:
+
+```
+A → Red (D2)    T → Blue/White (D3)    G → Green (D0)    C → Yellow (D1)
+```
+
+The DNA sequence in the `.ino` can be updated automatically from a `.fasta` file using the provided Python script:
+
+```bash
+python3 update_dna_sequence.py
+```
+
+Simply replace `sequence.fasta` with any FASTA file and run the script — it will update `Led_sequencer_DNA_1.ino` automatically.
+
+### `Led_sequencer_DNA_2` — Random sequence selector
+
+Same LED-to-base mapping, but picks a sequence **at random** from a list of sequences defined in the `.ino`. After each full sequence, a transition animation (all LEDs blink) plays before the next one starts.
 
 ---
 
@@ -83,13 +141,13 @@ Main program generating a light animation inspired by the structure of a **DNA d
 ### Prerequisites
 
 1. [Arduino IDE](https://www.arduino.cc/en/software) v2.x
-2. Add **ESP32** support in the Arduino IDE:
+2. Add **ESP32** board support:
    - `File > Preferences > Additional Boards Manager URLs`:
      ```
      https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
      ```
-   - `Tools > Board > Boards Manager` → search for **esp32** → Install
-3. Select the board: `Tools > Board > ESP32 Arduino > XIAO_ESP32C3`
+   - `Tools > Board > Boards Manager` → search **esp32** → Install
+3. Select: `Tools > Board > ESP32 Arduino > XIAO_ESP32C3`
 
 ### Steps
 
@@ -97,22 +155,52 @@ Main program generating a light animation inspired by the structure of a **DNA d
    ```bash
    git clone https://github.com/Bastien-mnt0/Project_LEDBox.git
    ```
-2. Open the desired sketch (`Led_sequencer_DNA/` or `Led_sequencer_test/`).
-3. Check the **pin numbers** at the top of the `.ino` file and adjust if needed.
-4. Connect the XIAO ESP32-C3 via USB-C.
-5. Compile and upload (`Ctrl+U`).
-6. Enjoy the result!
+2. Open the desired sketch in Arduino IDE.
+3. Connect the XIAO ESP32-C3 via USB-C.
+4. Compile and upload (`Ctrl+U`).
 
 ---
 
 ## Customization
 
-Main parameters to adjust in the sketches:
+### Change the DNA sequence (DNA_1)
+
+Replace `sequence.fasta` with any FASTA file, then run:
+
+```bash
+python3 update_dna_sequence.py
+```
+
+The script will automatically update the `DNA_sequence[]` array in the `.ino` file.
+
+### Timing
+
+Adjust delays at the top of any `.ino` file:
 
 ```cpp
-#define LED_WHITE   D0   // White LED pin
-#define LED_RED     D1   // Red LED pin
-#define LED_YELLOW  D2   // Yellow LED pin
-#define LED_GREEN   D3   // Green LED pin
-#define DELAY_MS    100  // Sequence speed (ms)
+const int ON_DELAY  = 300;  // LED on duration (ms)
+const int OFF_DELAY = 150;  // LED off duration (ms)
 ```
+
+### Add sequences (DNA_2)
+
+Edit the `DNA_sequences[]` array in `Led_sequencer_DNA_2.ino`:
+
+```cpp
+const char* DNA_sequences[] = {
+  "ATGCGT...",
+  "TGCACAGG...",
+};
+```
+
+---
+
+## License
+
+This project is open source. Feel free to use, modify, and share it.
+
+---
+
+## Contributing
+
+Contributions are welcome! Feel free to open an issue or a pull request.
