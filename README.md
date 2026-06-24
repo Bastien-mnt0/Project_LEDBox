@@ -1,118 +1,118 @@
 # Project_LEDBox
 
-Un projet de boîtier à LEDs piloté par un **Seeed Studio XIAO ESP32-C3**, incluant la conception 3D du boîtier, le schéma électronique et deux programmes de séquenceur LED.
+An LED box project controlled by a **Seeed Studio XIAO ESP32-C3**, including the 3D enclosure design, electronic schematic, and two LED sequencer programs.
 
 ---
 
-## Aperçu du montage
+## Project Overview
 
-> Prototype sur breadboard : XIAO ESP32-C3 + 4 LEDs (blanche, rouge, jaune, verte) avec résistances de protection.
+> Breadboard prototype: XIAO ESP32-C3 + 4 LEDs (white, red, yellow, green) with protection resistors.
 
 ---
 
-## Structure du projet
+## Project Structure
 
 ```
 Project_LEDBox/
-├── FreeCAD/                  # Modèles 3D du boîtier (fichiers .FCStd)
-├── Fritzing plan/            # Schéma électronique du circuit (fichier .fzz)
-├── Led_sequencer_DNA/        # Programme ESP32-C3 – séquence à thème ADN
-└── Led_sequencer_test/       # Programme ESP32-C3 – tests et validation du câblage
+├── FreeCAD/                  # 3D enclosure models (.FCStd files)
+├── Fritzing plan/            # Circuit schematic (.fzz file)
+├── Led_sequencer_DNA/        # ESP32-C3 program – DNA-themed sequence
+└── Led_sequencer_test/       # ESP32-C3 program – wiring tests and validation
 ```
 
 ---
 
-## Matériel nécessaire
+## Required Hardware
 
-| Composant | Description |
+| Component | Description |
 |---|---|
-| **Seeed Studio XIAO ESP32-C3** | Microcontrôleur principal (Wi-Fi + BLE, USB-C) |
-| **4 LEDs** | Blanche, Rouge, Jaune, Verte (5 mm) |
-| **4 résistances** | 1x 0 Ω (LED blanche), 3x 47 Ω (LED rouge, jaune, verte) |
-| **Mini breadboard** | Pour le prototypage |
-| **Fils de connexion** | Jumper wires |
-| **Boîtier imprimé en 3D** | Fichiers fournis dans `FreeCAD/` |
+| **Seeed Studio XIAO ESP32-C3** | Main microcontroller (Wi-Fi + BLE, USB-C) |
+| **4 LEDs** | White, Red, Yellow, Green (5 mm) |
+| **4 Resistors** | 1x 0 Ω (white LED), 3x 47 Ω (red, yellow, green LEDs) |
+| **Mini breadboard** | For prototyping |
+| **Jumper wires** | Connection wires |
+| **3D-printed enclosure** | Files provided in `FreeCAD/` |
 
 ---
 
-## Schéma électronique
+## Electronic Schematic
 
-Le schéma complet est disponible dans le dossier `Fritzing plan/`. Il peut être ouvert avec [Fritzing](https://fritzing.org/).
+The full schematic is available in the `Fritzing plan/` folder. It can be opened with [Fritzing](https://fritzing.org/).
 
-Brochage typique sur le XIAO ESP32-C3 :
+Typical pinout on the XIAO ESP32-C3:
 
-| LED | Broche XIAO | Résistance |
+| LED | XIAO Pin | Resistor |
 |---|---|---|
-| Blanche | D0 | 0 Ω |
-| Rouge | D1 | 47 Ω |
-| Jaune | D2 | 47 Ω |
-| Verte | D3 | 47 Ω |
+| White | D0 | 0 Ω |
+| Red | D1 | 47 Ω |
+| Yellow | D2 | 47 Ω |
+| Green | D3 | 47 Ω |
 
-- **Cathode (−) de chaque LED** → GND (via résistance)
-- **VCC** → 3,3 V (broches 3V3 du XIAO)
+- **Cathode (−) of each LED** → GND (via resistor)
+- **VCC** → 3.3 V (XIAO 3V3 pins)
 
-> Le XIAO ESP32-C3 fonctionne en **3,3 V logique**. Ne pas connecter directement à du 5 V.
-
----
-
-## Boîtier 3D
-
-Les fichiers de conception du boîtier sont dans le dossier `FreeCAD/`. Ils peuvent être ouverts et modifiés avec [FreeCAD](https://www.freecad.org/) (open source).
-
-Paramètres d'impression recommandés :
-- Matériau : **PLA**
-- Épaisseur de couche : **0,2 mm**
-- Remplissage : **20 %** minimum
+> The XIAO ESP32-C3 operates at **3.3 V logic**. Do not connect directly to 5 V.
 
 ---
 
-## Programmes
+## 3D Enclosure
+
+The enclosure design files are in the `FreeCAD/` folder. They can be opened and edited with [FreeCAD](https://www.freecad.org/) (open source).
+
+Recommended print settings:
+- Material: **PLA**
+- Layer height: **0.2 mm**
+- Infill: **20%** minimum
+
+---
+
+## Programs
 
 ### `Led_sequencer_test`
 
-Programme de test pour vérifier le bon fonctionnement du câblage et des LEDs. À utiliser en premier pour valider l'installation.
+Test program to verify that the wiring and LEDs are working correctly. Use this first to validate the setup.
 
 ### `Led_sequencer_DNA`
 
-Programme principal générant une animation lumineuse inspirée de la structure d'une **double hélice d'ADN**. Les LEDs s'allument de manière séquentielle pour reproduire un effet visuel en spirale.
+Main program generating a light animation inspired by the structure of a **DNA double helix**. The LEDs light up sequentially to reproduce a spiral visual effect.
 
 ---
 
-## Installation et utilisation
+## Installation and Usage
 
-### Prérequis
+### Prerequisites
 
 1. [Arduino IDE](https://www.arduino.cc/en/software) v2.x
-2. Ajouter le support **ESP32** dans l'IDE Arduino :
-   - `Fichier > Préférences > URL de gestionnaire de cartes supplémentaires` :
+2. Add **ESP32** support in the Arduino IDE:
+   - `File > Preferences > Additional Boards Manager URLs`:
      ```
      https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
      ```
-   - `Outils > Type de carte > Gestionnaire de cartes` → rechercher **esp32** → Installer
-3. Sélectionner la carte : `Outils > Type de carte > ESP32 Arduino > XIAO_ESP32C3`
+   - `Tools > Board > Boards Manager` → search for **esp32** → Install
+3. Select the board: `Tools > Board > ESP32 Arduino > XIAO_ESP32C3`
 
-### Étapes
+### Steps
 
-1. Cloner le dépôt :
+1. Clone the repository:
    ```bash
    git clone https://github.com/Bastien-mnt0/Project_LEDBox.git
    ```
-2. Ouvrir le sketch souhaité (`Led_sequencer_DNA/` ou `Led_sequencer_test/`).
-3. Vérifier les **numéros de broches** en haut du fichier `.ino` et les adapter si besoin.
-4. Brancher le XIAO ESP32-C3 en USB-C.
-5. Compiler et téléverser (`Ctrl+U`).
-6. Admirer le résultat
+2. Open the desired sketch (`Led_sequencer_DNA/` or `Led_sequencer_test/`).
+3. Check the **pin numbers** at the top of the `.ino` file and adjust if needed.
+4. Connect the XIAO ESP32-C3 via USB-C.
+5. Compile and upload (`Ctrl+U`).
+6. Enjoy the result!
 
 ---
 
-## Personnalisation
+## Customization
 
-Les paramètres principaux à ajuster dans les sketches :
+Main parameters to adjust in the sketches:
 
 ```cpp
-#define LED_BLANC   D0   // Broche LED blanche
-#define LED_ROUGE   D1   // Broche LED rouge
-#define LED_JAUNE   D2   // Broche LED jaune
-#define LED_VERTE   D3   // Broche LED verte
-#define DELAY_MS    100  // Vitesse de la séquence (ms)
+#define LED_WHITE   D0   // White LED pin
+#define LED_RED     D1   // Red LED pin
+#define LED_YELLOW  D2   // Yellow LED pin
+#define LED_GREEN   D3   // Green LED pin
+#define DELAY_MS    100  // Sequence speed (ms)
 ```
