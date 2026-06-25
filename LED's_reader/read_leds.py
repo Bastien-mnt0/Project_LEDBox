@@ -29,9 +29,11 @@ def letterbox_gray(frame, target_w, target_h):
     return result
 
 def read_leds():
-    Tk().withdraw()
-    video_file = askopenfilename()
-    cap = cv2.VideoCapture(video_file)
+    root = Tk()
+    root.attributes('-topmost', True)
+    root.withdraw()
+    video_file = askopenfilename(parent=root)
+    root.destroy()
 
     global seq
 

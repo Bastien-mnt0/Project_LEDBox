@@ -7,6 +7,28 @@ list_seq = []
 seq = ""
 new_nuc = None
 
+def letterbox(frame, target_w, target_h):
+    h, w = frame.shape[:2]
+    scale = min(target_w / w, target_h / h)
+    new_w, new_h = int(w * scale), int(h * scale)
+    resized = cv2.resize(frame, (new_w, new_h))
+    result = np.zeros((target_h, target_w, 3), dtype=np.uint8)
+    x_offset = (target_w - new_w) // 2
+    y_offset = (target_h - new_h) // 2
+    result[y_offset:y_offset + new_h, x_offset:x_offset + new_w] = resized
+    return result
+
+def letterbox_gray(frame, target_w, target_h):
+    h, w = frame.shape[:2]
+    scale = min(target_w / w, target_h / h)
+    new_w, new_h = int(w * scale), int(h * scale)
+    resized = cv2.resize(frame, (new_w, new_h))
+    result = np.zeros((target_h, target_w), dtype=np.uint8)
+    x_offset = (target_w - new_w) // 2
+    y_offset = (target_h - new_h) // 2
+    result[y_offset:y_offset + new_h, x_offset:x_offset + new_w] = resized
+    return result
+
 def read_leds():
     Tk().withdraw()
     video_file = askopenfilename()
@@ -15,12 +37,18 @@ def read_leds():
     global seq
     global list_seq
 
+    cv2.namedWindow('Movie', cv2.WINDOW_NORMAL)
+    cv2.resizeWindow('Movie', 800, 600)
+    cv2.namedWindow('Mask Gray', cv2.WINDOW_NORMAL)
+    cv2.resizeWindow('Mask Gray', 400, 300)
+
     while True:
 
         ret, frame = cap.read()
 
         if ret:
-            cv2.imshow('Movie', frame)
+            display_frame = letterbox(frame, 800, 600)
+            cv2.imshow('Movie', display_frame)
             cv2.waitKey(1)
             decode_frame(frame)
 
@@ -32,7 +60,6 @@ def read_leds():
             cap.release()
             cv2.destroyAllWindows()
             break
-
 
 
 def decode_frame(frame):
@@ -47,7 +74,6 @@ def decode_frame(frame):
 
     if not any([red_on(frame_hsv), green_on(frame_hsv), blue_on(frame_hsv), yellow_on(frame_hsv)]):
         new_nuc = True
-
 
     if new_nuc:
 
@@ -74,11 +100,8 @@ def decode_frame(frame):
             new_nuc = False
         else:
             pass
-            #seq = seq + "N"
-            #new_nuc = False
 
         print(seq)
-
 
 
 def red_on(frame):
@@ -131,13 +154,12 @@ def detect_on(frame, mask, px_threshold=2000):
     masked_frame = cv2.cvtColor(masked_frame, cv2.COLOR_BGR2GRAY)
     masked_frame = cv2.threshold(masked_frame, 2, 255, cv2.THRESH_BINARY)[1]
     detected = cv2.countNonZero(masked_frame) > px_threshold
-    cv2.imshow('Mask Gray', masked_frame)
+
+    display_masked = letterbox_gray(masked_frame, 400, 300)
+    cv2.imshow('Mask Gray', display_masked)
     cv2.waitKey(1)
 
     return detected
 
 
-
 read_leds()
-
-
