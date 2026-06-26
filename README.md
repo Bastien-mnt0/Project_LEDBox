@@ -110,10 +110,10 @@ Pinout on the XIAO ESP32-C3:
 
 | LED | XIAO Pin | Resistor | DNA Base |
 |---|---|---|---|
-| Green | D0 | 47 Ω | G |
-| Yellow | D1 | 47 Ω | C |
-| Red | D2 | 47 Ω | A |
-| Blue/White | D3 | 10 Ω | T |
+| Green | D0 | 10 Ω | G |
+| Yellow | D1 | 10 Ω | C |
+| Red | D2 | 10 Ω | A |
+| Blue/White | D3 | 47 Ω | T |
 
 - **Cathode (−) of each LED** → GND (via resistor)
 - **VCC** → 3.3 V (XIAO 3V3 pin)
